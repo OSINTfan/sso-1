@@ -1,0 +1,88 @@
+# Gitleaks configuration for SSO-1 Oracle
+# https://github.com/gitleaks/gitleaks
+
+title = "SSO-1 Secret Scanner"
+
+[extend]
+# Use default gitleaks rules as base
+useDefault = true
+
+# -----------------------------------------------------------------------------
+# Custom Rules for Solana/Crypto Projects
+# -----------------------------------------------------------------------------
+
+[[rules]]
+id = "solana-keypair-json"
+description = "Solana keypair JSON array (private key bytes)"
+# Matches JSON arrays with 64 integers (ed25519 keypair)
+regex = '''\[\s*\d{1,3}(\s*,\s*\d{1,3}){63}\s*\]'''
+keywords = ["["]
+tags = ["solana", "keypair", "secret"]
+
+[[rules]]
+id = "solana-private-key-base58"
+description = "Solana private key in base58 format"
+# Base58 encoded 64-byte keypair (87-88 chars)
+regex = '''[1-9A-HJ-NP-Za-km-z]{87,88}'''
+keywords = ["private", "secret", "key", "wallet"]
+tags = ["solana", "private-key"]
+
+[[rules]]
+id = "solana-seed-phrase"
+description = "BIP39 seed phrase (12 or 24 words)"
+regex = '''(?i)(seed|mnemonic|phrase|recovery).*[a-z]+(\s+[a-z]+){11,23}'''
+tags = ["solana", "seed-phrase", "secret"]
+
+[[rules]]
+id = "switchboard-secret"
+description = "Switchboard function secrets"
+regex = '''(?i)switchboard.*secret.*[:=]\s*['\"][^'"]+['\"]'''
+tags = ["switchboard", "secret"]
+
+[[rules]]
+id = "rpc-api-key"
+description = "RPC endpoint with API key"
+regex = '''https?://[^\s]*[?&]api[_-]?key=[^\s&"']+'''
+tags = ["api-key", "rpc"]
+
+[[rules]]
+id = "helius-api-key"
+description = "Helius RPC API key"
+regex = '''(?i)helius[^\s]*api[_-]?key.*[:=]\s*['\"]?[a-zA-Z0-9-]+['\"]?'''
+keywords = ["helius"]
+tags = ["api-key", "helius"]
+
+[[rules]]
+id = "quicknode-api-key"
+description = "QuickNode RPC API key"
+regex = '''https?://[^\s]*\.quiknode\.pro/[a-zA-Z0-9]+'''
+keywords = ["quiknode", "quicknode"]
+tags = ["api-key", "quicknode"]
+
+# -----------------------------------------------------------------------------
+# Allowlist - Files/patterns to ignore
+# -----------------------------------------------------------------------------
+
+[allowlist]
+description = "Global allowlist"
+
+paths = [
+    '''\.example\.toml$''',
+    '''\.example\.yaml$''',
+    '''\.example\.json$''',
+    '''\.md$''',
+    '''package-lock\.json$''',
+    '''Cargo\.lock$''',
+    '''\.gitleaks\.toml$''',
+]
+
+# Patterns that are OK (placeholders, examples)
+regexes = [
+    '''YOUR_[A-Z_]+_HERE''',
+    '''REPLACE_WITH_[A-Z_]+''',
+    '''<YOUR_[A-Z_]+>''',
+    '''example\.com''',
+    '''placeholder''',
+    '''Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS''',  # Anchor default program ID
+    '''SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f''',   # Switchboard program ID (public)
+]

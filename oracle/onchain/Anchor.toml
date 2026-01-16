@@ -1,0 +1,39 @@
+[features]
+seeds = false
+skip-lint = false
+
+[toolchain]
+anchor_version = "0.32.1"
+
+[programs.localnet]
+sso_signal = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+
+[programs.devnet]
+sso_signal = "Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS"
+
+[programs.mainnet]
+# TODO: Set after mainnet deployment
+# sso_signal = ""
+
+[registry]
+url = "https://api.apr.dev"
+
+[provider]
+cluster = "Localnet"
+wallet = "~/.config/solana/id.json"
+
+[scripts]
+test = "python3 -m pytest ../../tests/integration/ -v"
+
+[test]
+startup_wait = 20000
+
+[test.validator]
+url = "https://api.devnet.solana.com"
+bind_address = "127.0.0.1" 
+ledger = "test-ledger"
+rpc_port = 8899
+
+# Clone Switchboard programs for local testing
+# [[test.validator.clone]]
+# address = "SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f"

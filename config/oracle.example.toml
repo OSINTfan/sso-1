@@ -1,0 +1,102 @@
+# =============================================================================
+# SSO-1 Oracle Runtime Configuration
+# =============================================================================
+# Copy this file to oracle.toml and fill in your values.
+# NEVER commit oracle.toml - it may contain secrets.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Network Configuration
+# -----------------------------------------------------------------------------
+[network]
+# Solana cluster: devnet | testnet | mainnet-beta
+cluster = "devnet"
+
+# RPC endpoint - use a private RPC in production
+rpc_url = "https://api.devnet.solana.com"
+
+# Commitment level
+commitment = "confirmed"
+
+# -----------------------------------------------------------------------------
+# Program Configuration
+# -----------------------------------------------------------------------------
+[program]
+# SSO Signal program ID (set after deployment)
+program_id = "YOUR_PROGRAM_ID_HERE"
+
+# Switchboard V3 program ID
+switchboard_program_id = "SW1TCH7qEPTdLsDHRgPuMQjbQxKdH2aBStViMFnt64f"
+
+# -----------------------------------------------------------------------------
+# Signal Configuration
+# -----------------------------------------------------------------------------
+[signal]
+default_validity_slots = 25
+max_validity_slots = 100
+min_validity_slots = 3
+staleness_warning_slots = 50
+
+# -----------------------------------------------------------------------------
+# Market Context Configuration
+# -----------------------------------------------------------------------------
+[market_context]
+max_observation_age_slots = 100
+min_data_sources = 1
+recommended_data_sources = 3
+price_scale = 1_000_000_000
+volatility_scale = 1_000_000
+
+# -----------------------------------------------------------------------------
+# TEE Configuration
+# -----------------------------------------------------------------------------
+[tee]
+platform = "amd-sev-snp"
+min_platform_version = 1
+max_attestation_age_slots = 100
+
+# MR Enclave allowlist - add verified values for production
+mr_enclave_allowlist = []
+
+# -----------------------------------------------------------------------------
+# Logging
+# -----------------------------------------------------------------------------
+[logging]
+level = "info"
+format = "pretty"
+performance = false
+
+# -----------------------------------------------------------------------------
+# Asset Pairs
+# -----------------------------------------------------------------------------
+[asset_pairs]
+supported = [
+    "SOL/USDC",
+    "SOL/USDT",
+    "BTC/USDC",
+    "ETH/USDC",
+]
+default = "SOL/USDC"
+
+# -----------------------------------------------------------------------------
+# Rate Limiting
+# -----------------------------------------------------------------------------
+[rate_limit]
+max_updates_per_minute = 60
+min_update_interval_slots = 5
+
+# -----------------------------------------------------------------------------
+# Security - REVIEW CAREFULLY FOR PRODUCTION
+# -----------------------------------------------------------------------------
+[security]
+require_tee = true
+allow_unknown_enclave = false
+verify_signatures = true
+
+# -----------------------------------------------------------------------------
+# Development - NEVER enable in production
+# -----------------------------------------------------------------------------
+[dev]
+skip_tee_verification = false
+use_mock_data = false
+verbose = false

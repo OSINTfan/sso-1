@@ -1,0 +1,96 @@
+# =============================================================================
+# SSO-1 Switchboard Function Configuration
+# =============================================================================
+# Copy this file to switchboard.yaml and fill in your values.
+# NEVER commit switchboard.yaml - it may contain secrets.
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Function Metadata
+# -----------------------------------------------------------------------------
+function:
+  name: "SSO-1 Signal Oracle"
+  description: "Standardized Verifiable Signal Oracle - TEE-attested market signals"
+  version: "1.2.0"
+  spec_version: "1.2"
+
+# -----------------------------------------------------------------------------
+# Container Configuration
+# -----------------------------------------------------------------------------
+container:
+  # Replace with your registry
+  registry: "ghcr.io/YOUR_ORG"
+  image: "sso-1-function"
+  tag: "latest"
+
+  resources:
+    memory: "512Mi"
+    cpu: "0.5"
+
+  # Non-sensitive env vars only - use secrets for sensitive values
+  environment:
+    LOG_LEVEL: "info"
+    DEFAULT_VALIDITY_SLOTS: "25"
+
+# -----------------------------------------------------------------------------
+# TEE Requirements
+# -----------------------------------------------------------------------------
+tee:
+  platform: "amd-sev-snp"
+  min_platform_version: 1
+
+  attestation:
+    require_fresh: true
+    max_age_slots: 100
+
+  # Add verified mr_enclave values for production
+  mr_enclave_allowlist: []
+
+# -----------------------------------------------------------------------------
+# Execution Configuration
+# -----------------------------------------------------------------------------
+execution:
+  timeout_seconds: 30
+  max_retries: 3
+  retry_backoff_seconds: 5
+
+# -----------------------------------------------------------------------------
+# On-Demand Configuration
+# -----------------------------------------------------------------------------
+on_demand:
+  enabled: true
+  min_update_interval_slots: 5
+  staleness_warning_slots: 50
+
+# -----------------------------------------------------------------------------
+# Switchboard Network - FILL THESE IN
+# -----------------------------------------------------------------------------
+switchboard:
+  network: "devnet"
+
+  # Set after creating attestation queue
+  attestation_queue: "YOUR_ATTESTATION_QUEUE_ADDRESS"
+
+  # Set after function creation
+  function_account: "YOUR_FUNCTION_ACCOUNT_ADDRESS"
+
+  # Optional: specific verifier
+  verifier: ""
+
+# -----------------------------------------------------------------------------
+# Monitoring
+# -----------------------------------------------------------------------------
+monitoring:
+  health_check_enabled: true
+  health_check_interval: 60
+  alert_threshold_failures: 3
+
+# -----------------------------------------------------------------------------
+# Data Sources
+# -----------------------------------------------------------------------------
+data_sources:
+  min_sources: 2
+  source_timeout_seconds: 10
+
+  # Define your sources - actual URLs/credentials go in secrets
+  sources: []
