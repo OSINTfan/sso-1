@@ -71,8 +71,8 @@ This repository contains:
 | Protocol specification | Complete |
 | On-chain program structure | Complete |
 | TEE function scaffolding | Complete |
-| Scoring logic | **Stub only** (TODOs) |
-| Deployed program | **Not deployed** |
+| Scoring logic | **Stub only/in development** (TODOs) |
+| Deployed program | **Not deployed/in development/localnet** |
 | Audits | **None** |
 | Production providers | **None** |
 
@@ -125,3 +125,8 @@ Before using SSO-1 signals:
 Security vulnerabilities: See [SECURITY.md](SECURITY.md)
 
 General inquiries: [your contact method]
+
+
+ADDENDUM:
+
+While Claude generated almost the entirety (let's say around ~99%) of this codebase, the architecture and decisions behind it were shaped by two experienced engineers. Nowadays, even the best engineers we know leverage LLMs as a core tool in their workflows. We recognize the code isn't always optimal, which is precisely why we're opening this to the public for real-world feedback and iteration.
