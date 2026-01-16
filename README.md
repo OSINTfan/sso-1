@@ -72,12 +72,12 @@ make test-integration
 
 SSO-1 explicitly does **NOT** provide:
 
-- ❌ Alpha generation or prediction logic
-- ❌ Trading strategies or portfolio management
-- ❌ Token issuance or incentive mechanisms
-- ❌ Push-based signal delivery
-- ❌ Wall-clock time assumptions
-- ❌ Business logic beyond validation and persistence
+- Alpha generation or prediction logic
+- Trading strategies or portfolio management
+- Token issuance or incentive mechanisms
+- Push-based signal delivery
+- Wall-clock time assumptions
+- Business logic beyond validation and persistence
 
 ## Trust Model
 
