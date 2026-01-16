@@ -11,7 +11,7 @@
 
 **Do not report security vulnerabilities through public GitHub issues.**
 
-If you discover a security vulnerability within SSO-1, please send an email to security@your-org.com.
+If you discover a security vulnerability within SSO-1, please send an email to acephale4w@outlook.com
 
 Please include:
 
