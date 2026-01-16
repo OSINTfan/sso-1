@@ -124,7 +124,7 @@ Before using SSO-1 signals:
 
 Security vulnerabilities: See [SECURITY.md](SECURITY.md)
 
-General inquiries: [your contact method]
+General inquiries: acephale4w@outlook.com
 
 
 ADDENDUM:
