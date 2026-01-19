@@ -1,3 +1,57 @@
+Repository Archived — Superseded by SSO-1 v1.3
+
+Status: Archived (Read-only)
+Reason: Architectural supersession
+
+This repository represents an early experimental implementation of SSO-1 that was built before key architectural constraints were fully understood and formalized.
+
+Since then, the protocol has undergone a ground-up redesign, culminating in SSO-1 v1.3, which introduces a materially different trust model and execution architecture:
+
+A two-phase verification model separating one-time hardware attestation from high-frequency signal submission
+
+Amortized verification via zkVM-wrapped SEV-SNP attestation
+
+A strict Ed25519-only hot path compatible with Solana’s transaction size and compute limits
+
+Slot-relative validity and explicit economic backstops
+
+The design assumptions embedded in this repository (single-phase verification, direct hardware assumptions, or earlier trust abstractions) are no longer aligned with the current specification and should not be used as a reference for production systems.
+
+Why archive instead of rewrite?
+
+This repository is archived intentionally to:
+
+Preserve historical context and design evolution
+
+Avoid ambiguity between incompatible protocol versions
+
+Prevent accidental reuse of outdated assumptions
+
+A new repository, built from first principles and strictly aligned with the SSO-1 v1.3 specification, is now the canonical implementation.
+
+Canonical resources
+
+Specification: SSO-1 v1.3 (January 2026)
+
+Current implementation: [coming soon - will be linked here]
+
+Security model: See updated threat model in the new repository [coming soon - will be linked here]
+
+This repository is retained for reference only.
+No further development, maintenance, or security review will occur here.
+
+
+
+
+
+//////////////////////////////////////////////////////////////////
+
+Old readme below.
+
+
+
+
+
 # SSO-1: Standardized Verifiable Signal Oracle
 
 > **SSO-1 is a signal oracle infrastructure primitive, not a trading or portfolio management system.**
@@ -101,3 +155,4 @@ See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
 **Specification**: v1.2 (January 2026)  
 **Network**: Solana (Alpenglow Era)  
 **Oracle Framework**: Switchboard V3 On-Demand
+
